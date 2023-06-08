@@ -1,0 +1,89 @@
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width",initial-scaler=1.0>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/morph/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles1.css' %}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <title>ViewTask</title>
+    </head>
+    {% include 'profile/base.html' %}
+    <h2 style="text-align:center; font-family: Georgia, serif;">View Tasks</h2>
+    <hr style="color:gray; width:20px; background-color:gray">
+    <br>
+    <div>
+        <h3 class="text-center">You have <i>{{ count }} pending task{{ count|pluralize:'s' }}</i></h3>
+    </div>
+        <div id="search-add-wrapper">
+            <form method="get" action="{% url 'task-list' %}">
+                <label>
+                  Search:
+                  <input type="text" name="query" value="{{ query }}">
+                </label>
+                <label>
+                  Filter:
+                  <select name="status">
+                    <option value="">All</option>
+                    <option value="completed" {% if filter_status == 'completed' %}selected{% endif %}>Completed</option>
+                    <option value="pending" {% if filter_status == 'pending' %}selected{% endif %}>Pending</option>
+                  </select>
+                </label>
+                <button type="submit">Apply</button>
+              </form>
+        </div>
+        <div class="card-bdy">
+            <table style="margin-left:auto;margin-right:auto;">
+                {% for tsk in task %}
+                    {% if tsk.completed == True %}
+                <tr>
+                        
+                        <td><div class="task-complete-icon"></div></td>
+                        &nbsp;   &nbsp;   &nbsp;  
+                        <td><strike>{{ tsk.title }}, </strike></td> &nbsp; &nbsp;   &nbsp;  
+                        <td> <strike> {{tsk.due}}</strike></td>    
+                        <td></td>
+                        <td><a class="btn btn-primary navbar-btn btn-sm" type="button" href="{% url 'update-task' tsk.id %}"> Update task </a></td>
+                        <br><br>
+                        <td><a href="{% url 'delete-task' tsk.id %}" class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-trash"></span> Trash 
+                          </a></td>
+                </tr>
+                    {% else %}
+                <tr>
+                    
+                       <td> <div class="task-incomplete-icon"></div></td>
+                        &nbsp;   &nbsp;   &nbsp;  
+                        <td><b>{{ tsk.title }}</b></td>
+                        &nbsp;  &nbsp;   &nbsp;   &nbsp;  
+                        <td>{{ tsk.content }} </td>
+                        &nbsp;  &nbsp;   &nbsp;   &nbsp;  
+                        <td><span><b>Due:</b> {{ tsk.due|timeuntil }} </span></td>
+                        <td><a class="btn btn-primary btn-sm" type="button" href="{% url 'update-task' tsk.id %}"> Update task </a></td>
+                        <td>
+                            <a href="{% url 'delete-task' tsk.id %}" class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-trash"></span> Trash 
+                              </a>
+                        </td>
+                </tr>
+                    {% endif %}
+                </div>
+                {% empty %}
+                <h3>No Tasks Available</h3>
+                <a href="{% url 'create-task' %}">
+                    <span class="glyphicon glyphicon-plus">Add_New_Task</span>
+                  </a>
+                
+                {% endfor %}
+            </table>
+            </div>
+        
+        
+    <br>
+</html>

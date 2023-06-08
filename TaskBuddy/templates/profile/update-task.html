@@ -1,0 +1,39 @@
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width",initial-scaler=1.0>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/morph/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+        <title>UpdateTask</title>
+    </head>
+            
+        {% include 'profile/base.html' %}
+        <br>
+        <h2 class="text-center">Update Task..!</h2>
+            <hr>
+    
+        <div class="container bg-white shadow-md p-5 form-Layout" style="margin-top:20px;">
+
+            
+            <form method="POST" autocomplete="off">
+                {% csrf_token %}
+
+                {{ form.title|as_crispy_field }}
+                <br>
+                {{ form.content|as_crispy_field }}
+                <br>
+                {{ form.due|as_crispy_field }}
+                <br>
+                {{ form.completed|as_crispy_field }}
+                <a href="{% url 'view-tasks' %}"> Go back </a>
+                <br><br>
+                <input class="btn btn-primary navbar-btn" type="submit" value="Update task"/>
+            </form>
+        </div>
+        <br>
+</html>

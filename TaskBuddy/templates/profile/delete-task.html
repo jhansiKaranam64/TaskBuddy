@@ -1,0 +1,33 @@
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width",initial-scaler=1.0>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/morph/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+        <title>Deletetask</title>
+    </head>
+            
+        {% include 'profile/base.html' %}
+        <br>
+        <div class="container bg-white shadow-md p-5 form-Layout">
+
+            <h2>Delete Task..!</h2>
+            <hr>
+            <br>
+            <form method="POST" autocomplete="off">
+                {% csrf_token %}
+
+                <p> Are your sure that you want to delete this task ? </p>
+
+                <a href="{% url 'view-tasks' %}"> Go back </a>
+                <br><br>
+                <input class="btn btn-primary navbar-btn" type="submit" value="Delete"/>
+            </form>
+        </div>
+        <br>
+</html>

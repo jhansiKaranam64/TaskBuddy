@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+
+    <a class="navbar-brand main-heading">
+        <i class="fa fa-home">TaskBuddy</i>
+            
+    </a>
+    <a class="navbar-brand main-heading">
+    <h4><b> Hello {{ request.user|title }}...!</b></h4>
+    </a>
+    <button 
+        class="navbar-toggler"
+        type ="button"
+        data-toggle="collapse"
+        data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-Label="Toggle navigation"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse text-center" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+            &nbsp;      &nbsp;      &nbsp;
+
+            <li class="nav-item">
+                <a class="btn btn-primary navbar-btn" type="button" href="{% url 'dashboard' %}">Dashboard</a>
+            </li>
+
+            &nbsp;      &nbsp;      &nbsp;
+            
+            <li class="nav-item">
+                <a class="btn btn-primary navbar-btn" type="button" href="{% url 'create-task' %}">Create Task</a>
+            </li>
+            &nbsp;      &nbsp;      &nbsp;
+            
+            <li class="nav-item">
+                <a class="btn btn-primary navbar-btn" type="button" href="{% url 'view-tasks' %}">View tasks</a>
+            </li>
+            &nbsp;      &nbsp;      &nbsp;
+
+            <li class="nav-item">
+                <a class="btn btn-outline-danger navbar-btn" type="button" href="{% url 'user-logout' %}">Logout</a>
+            </li>
+            &nbsp;      &nbsp;      &nbsp;
+
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,66 @@
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width",initial-scaler=1.0>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/morph/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+        <!--  jQuery -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+        <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
+        <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
+        <!-- Bootstrap Date-Picker Plugin -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+        
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+
+        <!-- JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+
+        
+        <title>CreateTask</title>
+    </head>
+            
+        {% include 'profile/base.html' %}
+        <br>
+        <h3 class="text-center"> Create a task </h3>
+        <hr>
+      
+        <div class="container bg-white shadow-md p-5 form-Layout" style="margin-top:20px;">
+
+            <form method="POST" autocomplete="off">
+                {% csrf_token %}
+
+                {{ form.title|as_crispy_field }}
+                <br>
+                {{ form.content|as_crispy_field }}
+                <br>
+                {{ form.due|as_crispy_field }}
+                <input class="btn btn-primary navbar-btn" type="submit" value="Create task"/>
+            </form>
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    {{ form.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <br>
+        <script>
+            $(document).ready(function(){
+              var date_input=$('input[name="due"]'); //our date input has the name "date"
+              var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+              var options={
+                dateFormat: 'yy-mm-dd',
+              };
+              date_input.datepicker(options);
+            })
+        </script>
+</html>

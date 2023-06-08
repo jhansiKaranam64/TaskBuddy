@@ -1,0 +1,41 @@
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width",initial-scaler=1.0>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/morph/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+        <title>Task_Manager</title>
+    </head>
+    {% include 'pre-base.html' %}  
+    <h2 style="text-align:center; font-family: Georgia, serif;">Registration Page</h2>
+    <hr background-color="gray" color="gray" height="3px;">
+       
+        <div class="container bg-white shadow-md p-5 form-Layout">
+
+            
+            
+            <form method="POST" autocomplete="off">
+                {% csrf_token %}
+
+                {{ form.username|as_crispy_field }}
+                
+                {{ form.email|as_crispy_field }}
+                
+                {{ form.password1|as_crispy_field }}
+                
+                {{ form.password2|as_crispy_field }}
+                
+                <input class="btn btn-primary navbar-btn" type="submit" value="Register"/>
+                <br><br>
+                <p>Already, have an account? <a href="{% url 'my-login' %}"> Login </a></p>
+                
+                
+            </form>
+        </div>
+        <br>
+</html>
