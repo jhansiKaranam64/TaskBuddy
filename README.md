@@ -18,7 +18,8 @@ I designed and implement a task management application that satisfies the follow
 
 1. Clone the repository:
 
-    git clone https://github.com/jhansiKaranam64/Task_Buddy-app/
+    git clone
+https://github.com/jhansiKaranam64/TaskBuddy
 
 2. Install the required dependencies:
 
